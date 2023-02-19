@@ -10,6 +10,7 @@ clr.AddReference('System.Threading') # load the .NET assembly for the System.Thr
 from System.Windows.Forms import Control
 from System.Threading import Thread,ApartmentState,ThreadStart
 
+
 if not have_runtime():#There is no webview2 runtime or the version is too low
     install_runtime()#Download and install runtime
 
@@ -162,12 +163,12 @@ def main():
         # ====
 
 
-    app = customtkinter.CTk()
+    app = tk.Tk()
     app.geometry("600x500")
     app.title("Hezron Browser")
     #app.configure(fg_color='gold')
-    app.iconbitmap("on.ico")
-    #app.iconphoto(False, tk.PhotoImage(file='mut.png'))
+    app.iconbitmap("panda.ico")
+    #app.iconphoto(False, tk.PhotoImage(file='panda.jpg'))
     #app.tk.call('wm', 'iconphoto', app._w, tk.PhotoImage(file='mut.png'))
     search_url = tk.StringVar()
 
