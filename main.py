@@ -58,38 +58,38 @@ def main():
     def recall():
         global pause
         if pause == "yes":
-            print("on search")
-            return
-        elif pause == "no":
-            print("not on Search")
-            global count
-            get_cur_url()
-            #print(count)
-            #count+=1
-            app.after(1000, lambda :recall())
-    def entry_handler(event):
-        global pause
-        pause = "yes"
-    def click_handler(event):
-        global pause
-        pause = "yes"
-        print("clicked: pause set to yes")
+                print("on search")
+                return
+        if pause=="no":
+                print("not on Search")
+                global count
+                get_cur_url()
+                #print(count)
+                #count+=1
+                app.after(1000, lambda :recall())
 
-    def release_handler(event):
+    def click_handler():
+        global pause
+        pause = "yes"
+        print( "active on")
+
+    def release_handler():
+
         global pause
         pause = "no"
-        print("released: pause set to no")
+        print("relese")
+        recall()
 
-    def test_search(button):  # Color change on Mouse Hover
-        button.bind("<Enter>", func=lambda e: button.config(command=recall()))
-        button.bind("<Leave>", func=lambda e: button.config(command=recall()))
+
+    def test_search(button,colorOnHover, colorOnLeave):  # Color change on Mouse Hover
+        button.bind("<Enter>", func=lambda e: button.config(background=colorOnHover,command=click_handler()))
+        button.bind("<Leave>", func=lambda e: button.config(background=colorOnLeave,command=release_handler()))
 
     def Go_back():
             top_webview.web.GoBack()
 
     def Go_Forwad():
             top_webview.web.GoForward()
-
 
     def reload():
         top_webview.reload()
@@ -237,11 +237,10 @@ def main():
     search_bar = tk.Entry(master=nav_bar, bg='#232B2B', fg='white', font=("Consolas", 12), textvariable=search_url,border=0, borderwidth=0.5)
     search_bar.place(relx=0.122, rely=0.05, relwidth=0.41, relheight=0.9)
     search_bar.bind("<Return>", button_s)
-    change_bg_OnHover(search_bar,"#362819" ,"#232B2B")
-    #test_search(search_bar)
-    #search_bar.bind("<Button-1>", click_handler)
-    #search_bar.bind("<ButtonRelease-1>", release_handler)
-    search_bar.bind("<<ComboboxSelected>>", entry_handler)
+    #change_bg_OnHover(search_bar,"#362819" ,"#232B2B")
+    test_search(search_bar, "#362819" ,"#232B2B")
+
+
 
     Home_bt = tk.Button(master=nav_bar, fg='white' ,bg=nav_bar_bg, text='⤊',  font=("Arial Bold", 18),border=0, borderwidth=0, command=Home_Page)
     Home_bt.place(relx=0.532, rely=0.05, relwidth=0.02, relheight=0.9)
