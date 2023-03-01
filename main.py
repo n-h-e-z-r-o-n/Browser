@@ -1,6 +1,7 @@
 import customtkinter
 import tkinter as tk
 from mechanize import Browser
+from urllib.parse import urlparse
 
 customtkinter.set_appearance_mode("system")  # default value
 customtkinter.deactivate_automatic_dpi_awareness()
@@ -24,10 +25,8 @@ track_pair_widget = {}
 track_pair_widget1 = {}
 
 def Page_Title(url):
-    br = Browser()
-    br.open(url)
-    return br.title()
-
+    p_title_= urlparse('https://github.com/Hezron26/simple-Chat-bot/blob/main/Data_Set/DataSet.json').hostname
+    return p_title_.title()
 
 def main():
     global count
@@ -142,6 +141,7 @@ def main():
         new_web_view = WebView2(new_web_view_frame, 500, 500)
         new_web_view.pack(fill="both", expand=True)
         new_web_view.load_url('https://youtube.com')
+        new_web_view_tab_title = Page_Title('https://youtube.com')
         top_webview = new_web_view
 
         # ========================  Creating a new tab in the Tabs preview ==========
@@ -153,7 +153,7 @@ def main():
         fr = tk.Frame(new_tab_wid, bg='gray')
         fr.place(relx=0.02, rely=0.02, relheight=0.98, relwidth=0.96)
 
-        disp_tab = tk.Button(fr, text=f"{count}", bg='#8A9A5B', anchor="w",borderwidth=0, border=0, activebackground="#27251F", activeforeground="white", )
+        disp_tab = tk.Button(fr, text=f"{new_web_view_tab_title}", bg='#8A9A5B', anchor="w",borderwidth=0, border=0, activebackground="#27251F", activeforeground="white", )
         disp_tab.place(relheight=1, relwidth=0.8, relx=0)
         current_tabe = disp_tab
         disp_tab.configure(command=lambda:Push_top(new_web_view_frame, new_web_view, current_tabe))
