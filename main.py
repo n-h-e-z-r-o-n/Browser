@@ -24,6 +24,7 @@ if not have_runtime():#There is no webview2 runtime or the version is too low
     install_runtime()#Download and install runtime
 
 count  = 1
+pause = "no"
 top_webview = None
 current_tabe = None
 track_pair_widget = {}
@@ -35,7 +36,7 @@ def Page_Title(url):
     return p_title_.title()
 
 def main():
-    global count
+    global count, pause
     global Visited_links
     global top_webview
     global current_tabe
@@ -48,27 +49,40 @@ def main():
 
         app.destroy()
 
-    def ex():
-        return
-
-    def  on_loaded():
-        print("url: ",top_webview.get_url())
-
     def get_cur_url():
         while True:
             if top_webview.web_view.get_current_url() != None or top_webview.web_view.get_current_url() != search_url.get() :
                     search_url.set(top_webview.web_view.get_current_url())
                     #app.after(1000, lambda :[get_cur_url(), ex()])
                     return
-
     def recall():
-        global count
-        get_cur_url()
-        print(count)
-        count+=1
-        app.after(1000, lambda :recall())
+        global pause
+        if pause == "yes":
+            print("on search")
+            return
+        elif pause == "no":
+            print("not on Search")
+            global count
+            get_cur_url()
+            #print(count)
+            #count+=1
+            app.after(1000, lambda :recall())
+    def entry_handler(event):
+        global pause
+        pause = "yes"
+    def click_handler(event):
+        global pause
+        pause = "yes"
+        print("clicked: pause set to yes")
 
+    def release_handler(event):
+        global pause
+        pause = "no"
+        print("released: pause set to no")
 
+    def test_search(button):  # Color change on Mouse Hover
+        button.bind("<Enter>", func=lambda e: button.config(command=recall()))
+        button.bind("<Leave>", func=lambda e: button.config(command=recall()))
 
     def Go_back():
             top_webview.web.GoBack()
@@ -76,9 +90,6 @@ def main():
     def Go_Forwad():
             top_webview.web.GoForward()
 
-
-    def button_event():
-        pass
 
     def reload():
         top_webview.reload()
@@ -102,6 +113,9 @@ def main():
     def change_fg_OnHover(button, colorOnHover, colorOnLeave):  # Color change on Mouse Hover
         button.bind("<Enter>", func=lambda e: button.config(fg=colorOnHover))
         button.bind("<Leave>", func=lambda e: button.config(fg= colorOnLeave))
+
+
+
 
     def site_info():
        get_cur_url()
@@ -224,6 +238,10 @@ def main():
     search_bar.place(relx=0.122, rely=0.05, relwidth=0.41, relheight=0.9)
     search_bar.bind("<Return>", button_s)
     change_bg_OnHover(search_bar,"#362819" ,"#232B2B")
+    #test_search(search_bar)
+    #search_bar.bind("<Button-1>", click_handler)
+    #search_bar.bind("<ButtonRelease-1>", release_handler)
+    search_bar.bind("<<ComboboxSelected>>", entry_handler)
 
     Home_bt = tk.Button(master=nav_bar, fg='white' ,bg=nav_bar_bg, text='⤊',  font=("Arial Bold", 18),border=0, borderwidth=0, command=Home_Page)
     Home_bt.place(relx=0.532, rely=0.05, relwidth=0.02, relheight=0.9)
@@ -257,7 +275,7 @@ def main():
 
 
 
-    app.after(1000, recall)
+    app.after(1000, lambda :recall())
     app.after(5000, lambda: top_webview.evaluate_js('document.title', print))
 
     # ================================================================================================================================================================
