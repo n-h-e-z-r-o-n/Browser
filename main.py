@@ -67,17 +67,17 @@ def main():
                 #print(count)
                 #count+=1
                 app.after(1000, lambda :recall())
+        
+
 
     def click_handler():
         global pause
         pause = "yes"
-        print( "active on")
 
     def release_handler():
-
         global pause
         pause = "no"
-        print("relese")
+        time.sleep(1)
         recall()
 
 
