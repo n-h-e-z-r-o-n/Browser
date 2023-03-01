@@ -1,6 +1,6 @@
 import time
 import threading
-
+import multiprocessing
 import customtkinter
 import tkinter as tk
 from mechanize import Browser
@@ -51,18 +51,21 @@ def main():
     def ex():
         return
 
+    def  on_loaded():
+        print("url: ",top_webview.get_url())
 
     def get_cur_url():
         while True:
             if top_webview.web_view.get_current_url() != None or top_webview.web_view.get_current_url() != search_url.get() :
                     search_url.set(top_webview.web_view.get_current_url())
-                    app.after(1000, lambda :[get_cur_url(), ex()])
-                    #return
+                    #app.after(1000, lambda :[get_cur_url(), ex()])
+                    print(1)
+                    return
 
+    def recall():
+        #get_cur_url(top_webview)
+        app.after(1000, get_cur_url())
 
-
-
-        #)
 
 
     def Go_back():
@@ -247,13 +250,12 @@ def main():
     Tab.load_url('https://github.com/Hezron26')
     top_webview = Tab
 
-    #thread1 = threading.Thread(target=get_cur_url())
+    top_webview.events.loaded += on_loaded()
 
-
-
-
+    #app.after(1000, recall)
+    app.after(5000, lambda: top_webview.evaluate_js('document.title', print))
     # ================================================================================================================================================================
-
+    Tab.newwindow=print("new")
 
     app.protocol("WM_DELETE_WINDOW", Sytem_close) # bind the WM_DELETE_WINDOW protocol to the on_close function
     app.mainloop()
