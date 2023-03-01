@@ -35,6 +35,7 @@ def main():
 
         app.destroy()
 
+
     def get_cur_url(num):
         search_url.set(num.get_url())
 
