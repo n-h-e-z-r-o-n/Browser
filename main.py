@@ -23,9 +23,10 @@ top_webview = None
 current_tabe = None
 track_pair_widget = {}
 track_pair_widget1 = {}
+track_pair_widget2 = {}
 
 def Page_Title(url):
-    p_title_= urlparse('https://github.com/Hezron26/simple-Chat-bot/blob/main/Data_Set/DataSet.json').hostname
+    p_title_= urlparse(url).hostname
     return p_title_.title()
 
 def main():
@@ -33,7 +34,7 @@ def main():
     global Visited_links
     global top_webview
     global current_tabe
-    global track_pair_widget , track_pair_widget1
+    global track_pair_widget , track_pair_widget1, track_pair_widget2
 
     def Sytem_close():
         for child in app.winfo_children():  # destroy all child widgets of a frame:
@@ -54,10 +55,6 @@ def main():
 
 
     def button_event():
-        print("1",Tab.get_url())
-        print("2",Tab.web_view.get_current_url())
-        Tab.chwnd
-        print(Tab.newwindow)
         pass
 
     def reload():
@@ -66,12 +63,11 @@ def main():
     def button_s(num):
         global top_webview
         print(search_url.get())
-        top_webview.load_url(url=f'https://{search_url.get()}')
+        s_url = f'https://{search_url.get()}'
+        top_webview.load_url(url=s_url)
+        track_pair_widget2[top_webview].config(text=Page_Title(s_url))
 
-        while not top_webview.loaded:
-            print(12)
-            pass
-        print('Page Loaded', top_webview.get_url())
+
 
     def frame_changer(frame):
         frame.tkraise()
@@ -94,7 +90,7 @@ def main():
         global count
         global top_webview
         global current_tabe
-        global track_pair_widget, track_pair_widget1
+        global track_pair_widget, track_pair_widget1, track_pair_widget2
 
         if track_pair_widget != {}:
             for x in track_pair_widget:
@@ -141,7 +137,7 @@ def main():
         new_web_view = WebView2(new_web_view_frame, 500, 500)
         new_web_view.pack(fill="both", expand=True)
         new_web_view.load_url('https://youtube.com')
-        new_web_view_tab_title = Page_Title('https://youtube.com')
+        new_web_view_tab_title = Page_Title('https://youtube.com') # getting the webpage title
         top_webview = new_web_view
 
         # ========================  Creating a new tab in the Tabs preview ==========
@@ -155,20 +151,15 @@ def main():
 
         disp_tab = tk.Button(fr, text=f"{new_web_view_tab_title}", bg='#8A9A5B', anchor="w",borderwidth=0, border=0, activebackground="#27251F", activeforeground="white", )
         disp_tab.place(relheight=1, relwidth=0.8, relx=0)
+        track_pair_widget2[new_web_view] = disp_tab #pair ( top_web_window and  tab title)
         current_tabe = disp_tab
         disp_tab.configure(command=lambda:Push_top(new_web_view_frame, new_web_view, current_tabe))
 
-        track_pair_widget[new_web_view_frame] = disp_tab
+        track_pair_widget[new_web_view_frame] = disp_tab # pair ( web_frame and associate tab)
 
         close_bt = tk.Button(fr, text="X", bg='#8A9A5B', activebackground='gray', activeforeground='red', borderwidth=0, border=0, font=("Consolas Bold", 11), command=lambda:close_tab(new_tab_wid,new_web_view_frame))
         close_bt.place(relheight=1, relwidth=0.2, relx=0.8)
-        track_pair_widget1[new_web_view_frame] = close_bt
-
-        count +=1
-
-
-
-
+        track_pair_widget1[new_web_view_frame] = close_bt # pair ( web_frame and close tab)
         # ====
 
 
