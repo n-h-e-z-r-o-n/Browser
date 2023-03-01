@@ -59,12 +59,13 @@ def main():
             if top_webview.web_view.get_current_url() != None or top_webview.web_view.get_current_url() != search_url.get() :
                     search_url.set(top_webview.web_view.get_current_url())
                     #app.after(1000, lambda :[get_cur_url(), ex()])
-                    print(1)
                     return
 
     def recall():
+        global count
         get_cur_url()
-        print(3)
+        print(count)
+        count+=1
         app.after(1000, lambda :recall())
 
 
