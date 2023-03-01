@@ -165,6 +165,7 @@ def main():
 
     app = tk.Tk()
     app.geometry("600x500")
+    app.state("zoomed")
     app.title("Hezron Browser")
     #app.configure(fg_color='gold')
     app.iconbitmap("panda.ico")
