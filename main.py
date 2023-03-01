@@ -1,11 +1,15 @@
+import time
+
 import customtkinter
 import tkinter as tk
 from mechanize import Browser
 from urllib.parse import urlparse
 
-customtkinter.set_appearance_mode("system")  # default value
+
 customtkinter.deactivate_automatic_dpi_awareness()
+
 import clr
+
 from tkwebview2.tkwebview2 import WebView2, have_runtime, install_runtime
 #clr.AddReference('System')
 clr.AddReference('System.Windows.Forms') # load the .NET assembly for the System.Windows.Forms namespace
@@ -44,8 +48,11 @@ def main():
         app.destroy()
 
 
-    def get_cur_url(num):
-        search_url.set(num.get_url())
+    def get_cur_url():
+        if Tab.loaded:
+           time.sleep(2)
+           search_url.set(top_webview.get_url())
+           print("out: ",top_webview.get_url())
 
     def Go_back():
             top_webview.web.GoBack()
@@ -81,6 +88,7 @@ def main():
         button.bind("<Leave>", func=lambda e: button.config(fg= colorOnLeave))
 
     def site_info():
+       get_cur_url()
        print(Tab.loaded)
 
     def Home_Page():
@@ -228,7 +236,7 @@ def main():
     Tab.load_url('https://github.com/Hezron26')
     top_webview = Tab
 
-    get_cur_url(Tab)
+
     # ================================================================================================================================================================
 
 
