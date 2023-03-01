@@ -55,6 +55,9 @@ def main():
                     search_url.set(top_webview.web_view.get_current_url())
                     #app.after(1000, lambda :[get_cur_url(), ex()])
                     return
+
+            #app.after(3000, lambda: top_webview.evaluate_js('document.title', print))
+
     def recall():
         global pause
         if pause == "yes":
@@ -110,8 +113,7 @@ def main():
         button.bind("<Leave>", func=lambda e: button.config(fg= colorOnLeave))
 
 
-    def site_info():
-       pass
+
 
     def Home_Page():
         global top_webview
@@ -266,6 +268,7 @@ def main():
 
     app.after(1000, lambda :recall())
     app.after(3000, lambda: top_webview.evaluate_js('document.title', print))
+
 
     # ================================================================================================================================================================
     Tab.newwindow=print("new")
