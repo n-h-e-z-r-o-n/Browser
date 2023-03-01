@@ -68,8 +68,6 @@ def main():
                 #count+=1
                 app.after(1000, lambda :recall())
 
-
-
     def click_handler():
         global pause
         pause = "yes"
@@ -79,7 +77,6 @@ def main():
         pause = "no"
         time.sleep(1)
         recall()
-
 
     def test_search(button,colorOnHover, colorOnLeave):  # Color change on Mouse Hover
         button.bind("<Enter>", func=lambda e: button.config(background=colorOnHover,command=click_handler()))
@@ -103,7 +100,6 @@ def main():
           track_pair_widget2[top_webview].config(text=Page_Title(s_url))
         except:
             pass
-
 
 
     def frame_changer(frame):
@@ -273,7 +269,7 @@ def main():
 
 
     app.after(1000, lambda :recall())
-    app.after(5000, lambda: top_webview.evaluate_js('document.title', print))
+    app.after(3000, lambda: top_webview.evaluate_js('document.title', print))
 
     # ================================================================================================================================================================
     Tab.newwindow=print("new")
