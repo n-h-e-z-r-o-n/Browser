@@ -1,5 +1,7 @@
 import customtkinter
 import tkinter as tk
+from mechanize import Browser
+
 customtkinter.set_appearance_mode("system")  # default value
 customtkinter.deactivate_automatic_dpi_awareness()
 import clr
@@ -11,6 +13,7 @@ from System.Windows.Forms import Control
 from System.Threading import Thread,ApartmentState,ThreadStart
 
 
+
 if not have_runtime():#There is no webview2 runtime or the version is too low
     install_runtime()#Download and install runtime
 
@@ -19,6 +22,11 @@ top_webview = None
 current_tabe = None
 track_pair_widget = {}
 track_pair_widget1 = {}
+
+def Page_Title(url):
+    br = Browser()
+    br.open(url)
+    return br.title()
 
 
 def main():
