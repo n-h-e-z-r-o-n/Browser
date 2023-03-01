@@ -1,4 +1,5 @@
 import time
+import threading
 
 import customtkinter
 import tkinter as tk
@@ -53,11 +54,10 @@ def main():
 
     def get_cur_url():
         while True:
-            if top_webview.web_view.get_current_url() != None:
-                search_url.set(top_webview.web_view.get_current_url())
-                print(top_webview.web_view.get_current_url())
-                app.after(1000, lambda :[get_cur_url(), ex()])
-
+            if top_webview.web_view.get_current_url() != None or top_webview.web_view.get_current_url() != search_url.get() :
+                    search_url.set(top_webview.web_view.get_current_url())
+                    app.after(1000, lambda :[get_cur_url(), ex()])
+                    #return
 
 
 
@@ -246,6 +246,10 @@ def main():
     Tab.pack(fill="both", expand=True)
     Tab.load_url('https://github.com/Hezron26')
     top_webview = Tab
+
+    #thread1 = threading.Thread(target=get_cur_url())
+
+
 
 
     # ================================================================================================================================================================
