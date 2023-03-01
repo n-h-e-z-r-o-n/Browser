@@ -58,14 +58,10 @@ def main():
     def recall():
         global pause
         if pause == "yes":
-                print("on search")
                 return
         if pause=="no":
-                print("not on Search")
                 global count
                 get_cur_url()
-                #print(count)
-                #count+=1
                 app.after(1000, lambda :recall())
 
     def click_handler():
