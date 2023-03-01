@@ -67,7 +67,7 @@ def main():
                 #print(count)
                 #count+=1
                 app.after(1000, lambda :recall())
-        
+
 
 
     def click_handler():
@@ -99,7 +99,10 @@ def main():
         print(search_url.get())
         s_url = f'https://{search_url.get()}'
         top_webview.load_url(url=s_url)
-        track_pair_widget2[top_webview].config(text=Page_Title(s_url))
+        try:
+          track_pair_widget2[top_webview].config(text=Page_Title(s_url))
+        except:
+            pass
 
 
 
@@ -115,11 +118,8 @@ def main():
         button.bind("<Leave>", func=lambda e: button.config(fg= colorOnLeave))
 
 
-
-
     def site_info():
-       get_cur_url()
-       print(Tab.loaded)
+       pass
 
     def Home_Page():
         global top_webview
@@ -138,8 +138,6 @@ def main():
 
             for x in track_pair_widget1:
                    track_pair_widget1[x].configure(bg='#1C352D')
-
-
 
 
         def close_tab(t_num, w_num):
