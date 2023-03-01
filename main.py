@@ -47,12 +47,23 @@ def main():
 
         app.destroy()
 
+    def ex():
+        return
+
 
     def get_cur_url():
-        if Tab.loaded:
-           time.sleep(2)
-           search_url.set(top_webview.get_url())
-           print("out: ",top_webview.get_url())
+        while True:
+            if top_webview.web_view.get_current_url() != None:
+                search_url.set(top_webview.web_view.get_current_url())
+                print(top_webview.web_view.get_current_url())
+                app.after(1000, lambda :[get_cur_url(), ex()])
+
+
+
+
+
+        #)
+
 
     def Go_back():
             top_webview.web.GoBack()
