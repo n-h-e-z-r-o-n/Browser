@@ -63,8 +63,9 @@ def main():
                     return
 
     def recall():
-        #get_cur_url(top_webview)
-        app.after(1000, get_cur_url())
+        get_cur_url()
+        print(3)
+        app.after(1000, lambda :recall())
 
 
 
@@ -106,6 +107,8 @@ def main():
        print(Tab.loaded)
 
     def Home_Page():
+        global top_webview
+        top_webview = Tab
         Home_Tab.tkraise()
 
     def New_Tab_New_wind():
@@ -245,15 +248,17 @@ def main():
     Home_Tab = tk.Frame(app, bg=nav_bar_bg)
     Home_Tab.place(y=30, relwidth=1, relheight=0.977)
 
+
     Tab = WebView2(Home_Tab, 500, 500)
     Tab.pack(fill="both", expand=True)
     Tab.load_url('https://github.com/Hezron26')
     top_webview = Tab
 
-    top_webview.events.loaded += on_loaded()
 
-    #app.after(1000, recall)
+
+    app.after(1000, recall)
     app.after(5000, lambda: top_webview.evaluate_js('document.title', print))
+
     # ================================================================================================================================================================
     Tab.newwindow=print("new")
 
