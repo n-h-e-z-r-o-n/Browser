@@ -67,10 +67,13 @@ def main():
 
     def get_cur_url():
         while True:
-            if top_webview.web_view.get_current_url() != None or top_webview.web_view.get_current_url() != search_url.get() :
-                    search_url.set(top_webview.web_view.get_current_url())
-                    #app.after(1000, lambda :[get_cur_url(), ex()])
-                    return
+            try:
+                if top_webview.web_view.get_current_url() != None or top_webview.web_view.get_current_url() != search_url.get() :
+                        search_url.set(top_webview.web_view.get_current_url())
+                        #app.after(1000, lambda :[get_cur_url(), ex()])
+                        return
+            except:
+                return
 
             #app.after(3000, lambda: top_webview.evaluate_js('document.title', print))
 
