@@ -3,25 +3,17 @@
   { "Name": "Google",
      "Url": "https://google.com"
   },
- {
-     "Name": "Git Hub",
-     "Url": "https://github.com"
-  },
   {
     "Name": "youtube",
     "Url": "https://youtube.com"
   },
   {
-    "Name": "yahoo",
-    "Url": "https://yahoo.com"
+    "Name": "duckduckgo",
+    "Url": "https://duckduckgo.com"
   },
   {
-    "Name": "gmail",
-    "Url": "https://gmail.com"
-  },
-  {
-    "Name": "instagram",
-    "Url": "https://instagram.com"
+    "Name": "S2dfree",
+    "Url": "https://s2dfree.nl"
   },
   {
     "Name": "Hezron26",
@@ -30,7 +22,82 @@
   {
     "Name": "openai",
     "Url": "https://openai.com"
+  },
+  {
+    "Name": "kaggle",
+    "Url": "https://www.kaggle.com"
+  },
+  {
+    "Name": "fmovies",
+    "Url": "https://web.fmovies.to/home"
+  },
+  {
+    "Name": "quillbot",
+    "Url": "https://quillbot.com"
+  },
+  {
+    "Name": "Developer maps",
+    "Url": "https://roadmap.sh"
+  },
+  {
+    "Name": "chess",
+    "Url": "https://www.chess.com"
+  },
+  {
+    "Name": "whatsapp",
+    "Url": "https://web.whatsapp.com"
+  },
+  {
+    "Name": "enjoyalgorithms",
+    "Url": "https://www.enjoyalgorithms.com"
+  },
+  {
+    "Name": "exercism",
+    "Url": "https://exercism.org/donate"
+  },
+  {
+    "Name": "teachablemachine",
+    "Url": "https://teachablemachine.withgoogle.com"
+  },
+  {
+    "Name": "netlify",
+    "Url": "https://www.netlify.com"
+  },
+  {
+    "Name": "visualgo",
+    "Url": "https://visualgo.net/en"
+  },
+  {
+    "Name": "openai",
+    "Url": "https://openai.com"
+  },
+  {
+    "Name": "myflixer",
+    "Url": "https://myflixer.to/home"
+  },
+  {
+    "Name": "zty",
+    "Url": "https://zty.pe"
+  },
+  {
+    "Name": "codewars",
+    "Url": "https://www.codewars.com/join"
+  },
+  {
+    "Name": "eclass uonbi",
+    "Url": "https://eclass.uonbi.ac.ke"
+  },
+  {
+    "Name": "smis uonbi",
+    "Url": "https://smis.uonbi.ac.ke"
+  },
+  {
+    "Name": "safaricom Dev",
+    "Url": "https://developer.safaricom.co.ke"
+  },
+  {
+    "Name": "fakeyou",
+    "Url": "https://fakeyou.com"
   }
-
 ]
 }
