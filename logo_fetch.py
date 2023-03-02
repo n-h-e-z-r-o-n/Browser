@@ -26,7 +26,7 @@ def web_logo(url, name_log):
             print(logo_url)
         else:
             print('No logo found.')
-web_logo(url="https://www.gmail.com", name_log="gmail")
+
 """
 import requests
 from bs4 import BeautifulSoup

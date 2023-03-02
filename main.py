@@ -3,7 +3,7 @@ import customtkinter
 import tkinter as tk
 from urllib.parse import urlparse
 from PIL import ImageTk, Image
-import logo_fetch
+
 
 customtkinter.deactivate_automatic_dpi_awareness()
 
@@ -159,7 +159,7 @@ def main():
             while j < 4:
                 while i < 7:
                     if t < len(eb):
-                        lab_1 = tk.Label(widg, bg='green', font=("Courier New", 17))
+                        lab_1 = tk.Label(widg, bg='#B5A642', font=("Bauhaus 93", 17))
                         lab_1.place(relwidth=0.11, relheight=0.1, relx=x_pos, rely=y_pos)
                         lab_1.config(text=eb[t]['Name'])
                         test_search(lab_1, eb[t]["Url"])
@@ -327,11 +327,9 @@ def main():
         return new_image
 
 
-    img = resize("background.png")
-    Home_Tab = tk.Label(app, image=img, border=0)
+    img = resize("background.jpg")
+    Home_Tab = tk.Label(app, border=0, bg=nav_bar_bg, image=img)
     Home_Tab.place(y=30, relwidth=1, relheight=0.977)
-    Home_Tab.config(image=img)
-
     home_page(Home_Tab)
 
 
