@@ -1,12 +1,9 @@
 import time
-import threading
-import multiprocessing
 import customtkinter
 import tkinter as tk
-from mechanize import Browser
 from urllib.parse import urlparse
 from PIL import ImageTk, Image
-import json
+
 
 customtkinter.deactivate_automatic_dpi_awareness()
 
