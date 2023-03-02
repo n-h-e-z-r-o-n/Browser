@@ -182,7 +182,7 @@ def main():
         top_webview = Tab
         Home_Tab.tkraise()
 
-    def New_Tab_New_wind():
+    def New_Tab_New_wind(tab_url):
         global count
         global top_webview
         global current_tabe
@@ -230,7 +230,7 @@ def main():
 
         new_web_view = WebView2(new_web_view_frame, 500, 500)
         new_web_view.pack(fill="both", expand=True)
-        new_web_view.load_url('https://youtube.com')
+        new_web_view.load_url(tab_url)
         new_web_view_tab_title = Page_Title('https://youtube.com') # getting the webpage title
         top_webview = new_web_view
 
@@ -307,7 +307,7 @@ def main():
     Tabs_view = tk.Frame(nav_bar, bg=nav_bar_bg)
     Tabs_view.place(relx=0.552, rely=0.05, relwidth=0.44, relheight=0.9)
 
-    new_tab_bt = tk.Button(master=Tabs_view, fg='white',text="+", font=("Arial Bold", 13), activebackground=nav_bar_bg, activeforeground='yellow'  , bg=nav_bar_bg , command=New_Tab_New_wind, border=0, borderwidth=0)
+    new_tab_bt = tk.Button(master=Tabs_view, fg='white',text="+", font=("Arial Bold", 13), activebackground=nav_bar_bg, activeforeground='yellow'  , bg=nav_bar_bg , command=lambda :New_Tab_New_wind("https://www.google.com"), border=0, borderwidth=0)
     new_tab_bt.pack(side=tk.LEFT,fill='y',  ipadx=4)
     change_fg_OnHover(new_tab_bt, "red", "white")
 
