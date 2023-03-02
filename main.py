@@ -166,6 +166,7 @@ def main():
             save_site_fav.config(fg="white")
             save_url = None
 
+
         def refresh():
             i = 0
             while i < len(list_t):
