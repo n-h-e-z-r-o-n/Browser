@@ -172,8 +172,14 @@ def main():
                 i = 0
                 x_pos = 0.1
 
-        Home_Shortcuts()
 
+        Home_Shortcuts()
+        try:
+            import logo_fetch
+            new_image = logo_fetch.web_2("https://www.google.com")
+            list_t[0].config(image=resize(new_image))
+        except:
+            print("Error")
     def Home_show_Page():
         global top_webview
         #top_webview = Tab
