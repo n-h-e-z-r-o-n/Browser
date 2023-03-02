@@ -78,12 +78,13 @@ def main():
 
             #app.after(3000, lambda: top_webview.evaluate_js('document.title', print))
 
+
+
     def save_site_fav_save():
         global save_url
         if save_url == None:
            save_url = search_url.get()
            save_site_fav.config(fg="red")
-
         print("s: ", save_url)
 
 
@@ -159,7 +160,11 @@ def main():
             New_Tab_New_wind(url)
 
         def on_right_click():
+            global save_url
+            print(save_url)
             print("right_click")
+            save_site_fav.config(fg="white")
+            save_url = None
 
         def refresh():
             i = 0
