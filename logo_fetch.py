@@ -1,3 +1,4 @@
+
 import requests
 from bs4 import BeautifulSoup
 from urllib.parse import urlparse
@@ -25,11 +26,10 @@ def web_logo(url, name_log):
             print(logo_url)
         else:
             print('No logo found.')
-
-
+web_logo(url="https://www.gmail.com", name_log="gmail")
+"""
 import requests
 from bs4 import BeautifulSoup
-import tkinter as tk
 from PIL import ImageTk, Image
 from io import BytesIO
 def web_2(url):
@@ -50,3 +50,5 @@ def web_2(url):
         return img_tk
     else:
         print('No logo found.')
+
+"""

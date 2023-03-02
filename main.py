@@ -129,8 +129,9 @@ def main():
         button.bind("<Leave>", func=lambda e: button.config(fg= colorOnLeave))
 
     def home_page(widg):
-        global list_t
+        global list_t, tr
         list_t = []
+        tr = None
 
         def hover_handler(url):
             New_Tab_New_wind(url)
@@ -148,9 +149,9 @@ def main():
         f = open('storage.json')  # Opening JSON file
         data = json.load(f)  # returns JSON object as a dictionary
         eb = data['Websites']
-        print(len(eb))
-        new_image = logo_fetch.web_2("https://www.google.com")
+
         def Home_Shortcuts():
+            global tr
             x_pos = 0.1
             y_pos = 0.1
             i = j = 0
@@ -161,9 +162,9 @@ def main():
                         lab_1 = tk.Label(widg, bg='green', font=("Courier New", 17))
                         lab_1.place(relwidth=0.11, relheight=0.1, relx=x_pos, rely=y_pos)
                         lab_1.config(text=eb[t]['Name'])
-
                         test_search(lab_1, eb[t]["Url"])
                         list_t.append(lab_1)
+
                         t += 1
                     x_pos = x_pos + 0.12
                     i += 1
