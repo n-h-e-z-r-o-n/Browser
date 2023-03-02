@@ -1,0 +1,36 @@
+{"Websites":
+[
+  { "Name": "Google",
+     "Url": "https://google.com"
+  },
+ {
+     "Name": "Git Hub",
+     "Url": "https://github.com"
+  },
+  {
+    "Name": "youtube",
+    "Url": "https://youtube.com"
+  },
+  {
+    "Name": "yahoo",
+    "Url": "https://yahoo.com"
+  },
+  {
+    "Name": "gmail",
+    "Url": "https://gmail.com"
+  },
+  {
+    "Name": "instagram",
+    "Url": "https://instagram.com"
+  },
+  {
+    "Name": "instagram",
+    "Url": "https://instagram.com"
+  },
+  {
+    "Name": "openai",
+    "Url": "https://openai.com"
+  }
+
+]
+}

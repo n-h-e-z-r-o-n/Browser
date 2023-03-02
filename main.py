@@ -5,11 +5,27 @@ import customtkinter
 import tkinter as tk
 from mechanize import Browser
 from urllib.parse import urlparse
-
+from PIL import ImageTk, Image
+import json
 
 customtkinter.deactivate_automatic_dpi_awareness()
 
+import json
+f = open('storage.json') # Opening JSON file
+data = json.load(f) # returns JSON object as a dictionary
+eb = data['Websites']
+
+
 import clr
+
+def Home_Page():
+
+    label_image = tk.Label(frame, border=0)
+    label_image.place(relwidth=1, relheight=1)
+    #label_image.config(image=img)
+    pass
+
+
 
 from tkwebview2.tkwebview2 import WebView2, have_runtime, install_runtime
 #clr.AddReference('System')
@@ -112,10 +128,53 @@ def main():
         button.bind("<Enter>", func=lambda e: button.config(fg=colorOnHover))
         button.bind("<Leave>", func=lambda e: button.config(fg= colorOnLeave))
 
+    def home_page(widg):
+        global list_t
+        list_t = []
 
+        def hover_handler(url):  # Move the widget 10 pixels above its original position
+            print("twes", url)
 
+        def refresh():
+            i = 0
+            while i < len(list_t):
+                list_t[i].distroy()
+                i += 1
+            Home_Shortcuts()
 
-    def Home_Page():
+        def test_search(button, i):  # Color change on Mouse Hover
+            button.bind("<Button-1>", func=lambda e: button.config(command=hover_handler(i)))
+
+        f = open('storage.json')  # Opening JSON file
+        data = json.load(f)  # returns JSON object as a dictionary
+        eb = data['Websites']
+        print(len(eb))
+
+        def Home_Shortcuts():
+            x_pos = 0.1
+            y_pos = 0.1
+            i = j = 0
+            t = 0
+            while j < 4:
+                while i < 7:
+                    if t < len(eb):
+                        lab_1 = tk.Label(widg, bg='green', font=("Courier New", 17))
+                        lab_1.place(relwidth=0.11, relheight=0.1, relx=x_pos, rely=y_pos)
+                        lab_1.config(text=eb[t]['Name'])
+                        test_search(lab_1, eb[t]["Url"])
+                        list_t.append(lab_1)
+                        t += 1
+                    x_pos = x_pos + 0.12
+                    i += 1
+
+                y_pos += 0.2
+                j += 1
+                i = 0
+                x_pos = 0.1
+
+        Home_Shortcuts()
+
+    def Home_o_Page():
         global top_webview
         top_webview = Tab
         Home_Tab.tkraise()
@@ -199,10 +258,12 @@ def main():
     app.geometry("600x500")
     app.state("zoomed")
     app.title("Hezron Browser")
-    #app.configure(fg_color='gold')
+
     app.iconbitmap("panda.ico")
-    #app.iconphoto(False, tk.PhotoImage(file='panda.jpg'))
-    #app.tk.call('wm', 'iconphoto', app._w, tk.PhotoImage(file='mut.png'))
+
+    screen_width = app.winfo_screenwidth()
+    screen_height = app.winfo_screenheight()
+
     search_url = tk.StringVar()
 
     # ===================== Navigation Bar Section ==========================================================================================================
@@ -222,7 +283,7 @@ def main():
     reload_button.place(relx=0.061, rely=0.1, relwidth=0.03, relheight=0.8)
     change_fg_OnHover(reload_button, "yellow", "white")
 
-    site_info_button = tk.Button(master=nav_bar, fg='white',text="♠", font=("Arial Bold", 17),activebackground=nav_bar_bg, activeforeground='yellow'  , bg=nav_bar_bg , command=site_info, border=0, borderwidth=0)
+    site_info_button = tk.Button(master=nav_bar, fg='white',text="♠", font=("Arial Bold", 17),activebackground=nav_bar_bg, activeforeground='yellow'  , bg=nav_bar_bg , border=0, borderwidth=0)
     site_info_button.place(relx=0.091, rely=0.1, relwidth=0.03, relheight=0.8)
     change_fg_OnHover(site_info_button, "yellow", "white")
 
@@ -255,23 +316,38 @@ def main():
     change_fg_OnHover(setting_, "red", "white")
 
     # =========================== Home Page=====================================================================================================================
-    Home_Tab = tk.Frame(app, bg=nav_bar_bg)
+    def resize(file_location):
+        img = (Image.open(file_location))
+        Resized_image = img.resize((screen_width, screen_height), Image.ANTIALIAS)
+        new_image = ImageTk.PhotoImage(Resized_image)
+        return new_image
+
+
+    img = resize("background.png")
+    Home_Tab = tk.Label(app, image=img, border=0)
     Home_Tab.place(y=30, relwidth=1, relheight=0.977)
+    Home_Tab.config(image=img)
+
+    home_page(Home_Tab)
 
 
-    Tab = WebView2(Home_Tab, 500, 500)
-    Tab.pack(fill="both", expand=True)
-    Tab.load_url('https://github.com/Hezron26')
-    top_webview = Tab
+    #Home_Tab = tk.Frame(app, bg=nav_bar_bg)
+    #Home_Tab.place(y=30, relwidth=1, relheight=0.977)
+
+
+    #Tab = WebView2(Home_Tab, 500, 500)
+    #Tab.pack(fill="both", expand=True)
+    #Tab.load_url('https://github.com/Hezron26')
+    #top_webview = Tab
 
 
 
     app.after(1000, lambda :recall())
-    app.after(3000, lambda: top_webview.evaluate_js('document.title', print))
+    #app.after(3000, lambda: top_webview.evaluate_js('document.title', print))
 
 
     # ================================================================================================================================================================
-    Tab.newwindow=print("new")
+    #Tab.newwindow=print("new")
 
     app.protocol("WM_DELETE_WINDOW", Sytem_close) # bind the WM_DELETE_WINDOW protocol to the on_close function
     app.mainloop()
