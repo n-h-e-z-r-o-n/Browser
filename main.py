@@ -48,8 +48,9 @@ track_pair_widget1 = {}
 track_pair_widget2 = {}
 
 def Page_Title(url):
-    p_title_= urlparse(url).hostname
-    return p_title_.title()
+    print("Title:", url)
+    #p_title_= urlparse(url).hostname
+    #return p_title_.title()
 
 def main():
     global count, pause
@@ -231,7 +232,7 @@ def main():
         new_web_view = WebView2(new_web_view_frame, 500, 500)
         new_web_view.pack(fill="both", expand=True)
         new_web_view.load_url(tab_url)
-        new_web_view_tab_title = Page_Title('tab_url') # getting the webpage title
+        new_web_view_tab_title = Page_Title(tab_url) # getting the webpage title
         top_webview = new_web_view
 
         # ========================  Creating a new tab in the Tabs preview ==========
