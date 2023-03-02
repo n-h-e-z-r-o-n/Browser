@@ -135,8 +135,8 @@ def main():
         global list_t
         list_t = []
 
-        def hover_handler(url):  # Move the widget 10 pixels above its original position
-            print("twes", url)
+        def hover_handler(url):
+            New_Tab_New_wind(url)
 
         def refresh():
             i = 0
@@ -177,9 +177,9 @@ def main():
 
         Home_Shortcuts()
 
-    def Home_o_Page():
+    def Home_show_Page():
         global top_webview
-        top_webview = Tab
+        #top_webview = Tab
         Home_Tab.tkraise()
 
     def New_Tab_New_wind(tab_url):
@@ -231,7 +231,7 @@ def main():
         new_web_view = WebView2(new_web_view_frame, 500, 500)
         new_web_view.pack(fill="both", expand=True)
         new_web_view.load_url(tab_url)
-        new_web_view_tab_title = Page_Title('https://youtube.com') # getting the webpage title
+        new_web_view_tab_title = Page_Title('tab_url') # getting the webpage title
         top_webview = new_web_view
 
         # ========================  Creating a new tab in the Tabs preview ==========
@@ -298,7 +298,7 @@ def main():
 
 
 
-    Home_bt = tk.Button(master=nav_bar, fg='white' ,bg=nav_bar_bg, text='⤊',  font=("Arial Bold", 18),border=0, borderwidth=0, command=Home_Page)
+    Home_bt = tk.Button(master=nav_bar, fg='white' ,bg=nav_bar_bg, text='⤊',  font=("Arial Bold", 18),border=0, borderwidth=0, command=Home_show_Page)
     Home_bt.place(relx=0.532, rely=0.05, relwidth=0.02, relheight=0.9)
     change_fg_OnHover(Home_bt, "yellow", "white")
 
