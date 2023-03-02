@@ -38,6 +38,7 @@ if not have_runtime():#There is no webview2 runtime or the version is too low
 
 count  = 1
 pause = "no"
+save_url = None
 top_webview = None
 current_tabe = None
 track_pair_widget = {}
@@ -76,6 +77,15 @@ def main():
                 return
 
             #app.after(3000, lambda: top_webview.evaluate_js('document.title', print))
+
+    def save_site_fav_save():
+        global save_url
+        if save_url == None:
+           save_url = search_url.get()
+           save_site_fav.config(fg="red")
+
+        print("s: ", save_url)
+
 
     def recall():
         global pause
@@ -145,8 +155,11 @@ def main():
         list_t = []
         tr = None
 
-        def hover_handler(url):
+        def on_left_click(url):
             New_Tab_New_wind(url)
+
+        def on_right_click():
+            print("right_click")
 
         def refresh():
             i = 0
@@ -156,7 +169,10 @@ def main():
             Home_Shortcuts()
 
         def test_search(button, i):  # Color change on Mouse Hover
-            button.bind("<Button-1>", func=lambda e: button.config(command=hover_handler(i)))
+            button.bind("<Button-1>", func=lambda e: button.config(command=on_left_click(i)))
+
+        def test_search2(button):  # Color change on Mouse Hover
+            button.bind("<Button-3>", func=lambda e: button.config(command=on_right_click()))
 
         f = open('storage.json')  # Opening JSON file
         data = json.load(f)  # returns JSON object as a dictionary
@@ -176,6 +192,7 @@ def main():
                         lab_1.config(text=eb[t]['Name'])
                         change_bg_OnHover(lab_1, "#D2691E", "#B5A642" )
                         test_search(lab_1, eb[t]["Url"])
+                        test_search2(lab_1)
                         list_t.append(lab_1)
 
                         t += 1
@@ -302,9 +319,9 @@ def main():
     reload_button.place(relx=0.061, rely=0.1, relwidth=0.03, relheight=0.8)
     change_fg_OnHover(reload_button, "yellow", "white")
 
-    site_info_button = tk.Button(master=nav_bar, fg='white',text="♠", font=("Arial Bold", 17),activebackground=nav_bar_bg, activeforeground='yellow'  , bg=nav_bar_bg , border=0, borderwidth=0)
-    site_info_button.place(relx=0.091, rely=0.1, relwidth=0.03, relheight=0.8)
-    change_fg_OnHover(site_info_button, "yellow", "white")
+    save_site_fav = tk.Button(master=nav_bar, fg='white',text="♠", font=("Arial Bold", 17),activebackground=nav_bar_bg, activeforeground='yellow' , command=save_site_fav_save , bg=nav_bar_bg , border=0, borderwidth=0)
+    save_site_fav.place(relx=0.091, rely=0.1, relwidth=0.03, relheight=0.8)
+    #change_fg_OnHover(save_site_fav, "yellow", "white")
 
     search_bar = tk.Entry(master=nav_bar, bg='#232B2B', fg='white', font=("Consolas", 12), textvariable=search_url,border=0, borderwidth=0.5)
     search_bar.place(relx=0.122, rely=0.05, relwidth=0.41, relheight=0.9)
