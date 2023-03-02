@@ -108,13 +108,22 @@ def main():
 
     def button_s(num):
         global top_webview
+        s_url = f"https://www.google.com/search?q={search_url.get()}"
+
         print(search_url.get())
-        s_url = f'https://{search_url.get()}'
-        top_webview.load_url(url=s_url)
-        try:
-          track_pair_widget2[top_webview].config(text=Page_Title(s_url))
-        except:
-            pass
+        print(top_webview)
+        if top_webview == None:
+            New_Tab_New_wind(s_url)
+        else:
+            #s_url = f'https://{search_url.get()}'
+
+            s_url = f"https://www.google.com/search?q={search_url.get()}"
+
+            top_webview.load_url(url=s_url)
+            try:
+              track_pair_widget2[top_webview].config(text=Page_Title(s_url))
+            except:
+                pass
 
 
     def frame_changer(frame):
