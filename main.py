@@ -43,6 +43,8 @@ current_tabe = None
 track_pair_widget = {}
 track_pair_widget1 = {}
 track_pair_widget2 = {}
+track_pair_widget3 = {}
+
 
 def Page_Title(url):
     p_title_= urlparse(url).hostname
@@ -68,6 +70,7 @@ def main():
                 if top_webview.web_view.get_current_url() != None or top_webview.web_view.get_current_url() != search_url.get() :
                         search_url.set(top_webview.web_view.get_current_url())
                         #app.after(1000, lambda :[get_cur_url(), ex()])
+                        track_pair_widget3[top_webview].config(text=Page_Title(top_webview.web_view.get_current_url()))
                         return
             except:
                 return
@@ -81,7 +84,7 @@ def main():
         if pause=="no":
                 global count
                 get_cur_url()
-                app.after(1000, lambda :recall())
+                app.after(4000, lambda :recall())
 
     def click_handler():
         global pause
@@ -90,8 +93,8 @@ def main():
     def release_handler():
         global pause
         pause = "no"
-        time.sleep(1)
-        recall()
+        #time.sleep(1)
+        app.after(10000, lambda :recall())
 
     def test_search(button,colorOnHover, colorOnLeave):  # Color change on Mouse Hover
         button.bind("<Enter>", func=lambda e: button.config(background=colorOnHover,command=click_handler()))
@@ -108,6 +111,7 @@ def main():
 
     def button_s(num):
         global top_webview
+        # s_url = f'https://{search_url.get()}'
         s_url = f"https://www.google.com/search?q={search_url.get()}"
 
         print(search_url.get())
@@ -115,15 +119,14 @@ def main():
         if top_webview == None:
             New_Tab_New_wind(s_url)
         else:
-            #s_url = f'https://{search_url.get()}'
-
-            s_url = f"https://www.google.com/search?q={search_url.get()}"
-
-            top_webview.load_url(url=s_url)
             try:
-              track_pair_widget2[top_webview].config(text=Page_Title(s_url))
+                top_webview.load_url(url=s_url)
+                try:
+                  track_pair_widget2[top_webview].config(text=Page_Title(s_url))
+                except:
+                    pass
             except:
-                pass
+                New_Tab_New_wind(s_url)
 
 
     def frame_changer(frame):
@@ -207,7 +210,7 @@ def main():
                    track_pair_widget1[x].configure(bg='#1C352D')
 
 
-        def close_tab(t_num, w_num):
+        def close_tab(t_num, w_num, t_nu):
             for child in t_num.winfo_children(): #  destroy all child widgets of a frame:
                 child.destroy()  #  destroy all child widgets
             for child in w_num.winfo_children(): #  destroy all child widgets of a frame:
@@ -217,6 +220,7 @@ def main():
 
             track_pair_widget.pop(w_num)  #  Remove  widgets
             track_pair_widget1.pop(w_num) #  Remove  widgets
+            track_pair_widget3.pop(t_nu)  #  Remove  widgets
 
 
         def Push_top(top_frame, top_web_view, tab_act):
@@ -254,15 +258,16 @@ def main():
         fr = tk.Frame(new_tab_wid, bg='gray')
         fr.place(relx=0.02, rely=0.02, relheight=0.98, relwidth=0.96)
 
-        disp_tab = tk.Button(fr, text=f"{new_web_view_tab_title}", bg='#8A9A5B', anchor="w",borderwidth=0, border=0, activebackground="#27251F", activeforeground="white", )
+        disp_tab = tk.Button(fr, text=f"{new_web_view_tab_title}", bg='#8A9A5B', anchor="w",borderwidth=0, border=0, activebackground="#27251F",  font=("Segoe Print Bold", 9), activeforeground="white", )
         disp_tab.place(relheight=1, relwidth=0.8, relx=0)
+        track_pair_widget3[top_webview] = disp_tab
         track_pair_widget2[new_web_view] = disp_tab #pair ( top_web_window and  tab title)
         current_tabe = disp_tab
         disp_tab.configure(command=lambda:Push_top(new_web_view_frame, new_web_view, current_tabe))
 
         track_pair_widget[new_web_view_frame] = disp_tab # pair ( web_frame and associate tab)
 
-        close_bt = tk.Button(fr, text="X", bg='#8A9A5B', activebackground='gray', activeforeground='red', borderwidth=0, border=0, font=("Consolas Bold", 11), command=lambda:close_tab(new_tab_wid,new_web_view_frame))
+        close_bt = tk.Button(fr, text="X", bg='#8A9A5B', activebackground='gray', activeforeground='red', borderwidth=0, border=0, font=("Consolas Bold", 11), command=lambda:close_tab(new_tab_wid,new_web_view_frame,top_webview))
         close_bt.place(relheight=1, relwidth=0.2, relx=0.8)
         track_pair_widget1[new_web_view_frame] = close_bt # pair ( web_frame and close tab)
         # ====
