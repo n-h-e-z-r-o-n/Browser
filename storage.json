@@ -96,8 +96,20 @@
     "Url": "https://developer.safaricom.co.ke"
   },
   {
-    "Name": "fakeyou",
-    "Url": "https://fakeyou.com"
+    "Name": "twitter",
+    "Url": "https://twitter.com"
+  },
+  {
+    "Name": "facebook",
+    "Url": "https://facebook.com"
+  },
+  {
+    "Name": "yahoo",
+    "Url": "https://yahoo.com.com"
+  },
+  {
+    "Name": "gmail",
+    "Url": "https://gmail.com"
   }
 ]
 }
