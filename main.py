@@ -48,9 +48,8 @@ track_pair_widget1 = {}
 track_pair_widget2 = {}
 
 def Page_Title(url):
-    print("Title:", url)
-    #p_title_= urlparse(url).hostname
-    #return p_title_.title()
+    p_title_= urlparse(url).hostname
+    return p_title_.title()
 
 def main():
     global count, pause
