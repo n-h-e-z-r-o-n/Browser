@@ -3,7 +3,7 @@ import customtkinter
 import tkinter as tk
 from urllib.parse import urlparse
 from PIL import ImageTk, Image
-
+import logo_fetch
 
 customtkinter.deactivate_automatic_dpi_awareness()
 
@@ -149,7 +149,7 @@ def main():
         data = json.load(f)  # returns JSON object as a dictionary
         eb = data['Websites']
         print(len(eb))
-
+        new_image = logo_fetch.web_2("https://www.google.com")
         def Home_Shortcuts():
             x_pos = 0.1
             y_pos = 0.1
@@ -161,6 +161,7 @@ def main():
                         lab_1 = tk.Label(widg, bg='green', font=("Courier New", 17))
                         lab_1.place(relwidth=0.11, relheight=0.1, relx=x_pos, rely=y_pos)
                         lab_1.config(text=eb[t]['Name'])
+
                         test_search(lab_1, eb[t]["Url"])
                         list_t.append(lab_1)
                         t += 1
@@ -174,12 +175,8 @@ def main():
 
 
         Home_Shortcuts()
-        try:
-            import logo_fetch
-            new_image = logo_fetch.web_2("https://www.google.com")
-            list_t[0].config(image=resize(new_image))
-        except:
-            print("Error")
+
+
     def Home_show_Page():
         global top_webview
         #top_webview = Tab

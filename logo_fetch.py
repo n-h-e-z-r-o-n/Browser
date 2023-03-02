@@ -27,6 +27,9 @@ def web_logo(url, name_log):
             print('No logo found.')
 
 
+import requests
+from bs4 import BeautifulSoup
+import tkinter as tk
 from PIL import ImageTk, Image
 from io import BytesIO
 def web_2(url):
