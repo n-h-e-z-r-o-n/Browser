@@ -162,6 +162,7 @@ def main():
                         lab_1 = tk.Label(widg, bg='#B5A642', font=("Bauhaus 93", 17))
                         lab_1.place(relwidth=0.11, relheight=0.1, relx=x_pos, rely=y_pos)
                         lab_1.config(text=eb[t]['Name'])
+                        change_bg_OnHover(lab_1, "#D2691E", "#B5A642" )
                         test_search(lab_1, eb[t]["Url"])
                         list_t.append(lab_1)
 
