@@ -281,7 +281,7 @@ def main():
         fr = tk.Frame(new_tab_wid, bg='gray')
         fr.place(relx=0.02, rely=0.02, relheight=0.98, relwidth=0.96)
 
-        disp_tab = tk.Button(fr, text=f"{new_web_view_tab_title}", bg='#8A9A5B', anchor="w",borderwidth=0, border=0, activebackground="#27251F",  font=("Segoe Print Bold", 9), activeforeground="white", )
+        disp_tab = tk.Button(fr, text=f"{new_web_view_tab_title}", fg='white', bg='#8A9A5B', anchor="w",borderwidth=0, border=0, activebackground="#27251F",  font=("Segoe Print Bold", 9), activeforeground="white", )
         disp_tab.place(relheight=1, relwidth=0.8, relx=0)
         track_pair_widget3[top_webview] = disp_tab
         track_pair_widget2[new_web_view] = disp_tab #pair ( top_web_window and  tab title)
